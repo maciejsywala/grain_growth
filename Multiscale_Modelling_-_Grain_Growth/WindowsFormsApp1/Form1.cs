@@ -195,11 +195,11 @@ namespace WindowsFormsApp1
                 }
             }
 
-            foreach (var intrusionPixel in newInclusions)
+            foreach (var inclusionPixel in newInclusions)
             {
-                for (var x = intrusionPixel.X - sizeOfInclusions; x <= intrusionPixel.X + sizeOfInclusions; x++)
+                for (var x = inclusionPixel.X - sizeOfInclusions; x <= inclusionPixel.X + sizeOfInclusions; x++)
                 {
-                    for (var y = intrusionPixel.Y - sizeOfInclusions; y <= intrusionPixel.Y + sizeOfInclusions; y++)
+                    for (var y = inclusionPixel.Y - sizeOfInclusions; y <= inclusionPixel.Y + sizeOfInclusions; y++)
                     {
                         if (!CheckIfCoordinatesCorrect(x, y))
                         {
@@ -208,14 +208,14 @@ namespace WindowsFormsApp1
 
                         if (typeOfInclusion == Metadata.InclusionType.Circular)
                         {
-                            var distance = Math.Sqrt(Math.Pow(intrusionPixel.X - x, 2) + Math.Pow(intrusionPixel.Y - y, 2));
+                            var distance = Math.Sqrt(Math.Pow(inclusionPixel.X - x, 2) + Math.Pow(inclusionPixel.Y - y, 2));
                             if (Math.Floor(distance) > sizeOfInclusions)
                             {
                                 continue;
                             }
                         }
 
-                        ApplyPixelStateChange(x, y, intrusionPixel.State, intrusionPixel.Block);
+                        ApplyPixelStateChange(x, y, inclusionPixel.State, inclusionPixel.Block);
                     }
                 }
             }
@@ -288,7 +288,7 @@ namespace WindowsFormsApp1
                 return;
             }
 
-            CalculateBoarderPixels();
+            CalculateBoarderPixels(true);
             foreach (var borderPixel in _borderPixels)
             {
                 for (int xN = -1 * size; xN <= 1 * size; xN++)
@@ -574,7 +574,8 @@ namespace WindowsFormsApp1
             _matrix[x, y].State = state;
             DrawPixel(x, y, state);
         }
-        private void CalculateBoarderPixels()
+
+        private void CalculateBoarderPixels(bool includeInclusions = false)
         {
             _borderPixels.Clear();
             for (int x = 0; x < xDimension; x++)
@@ -593,9 +594,19 @@ namespace WindowsFormsApp1
 
                             var pixel1 = GetPixel(x, y);
                             var pixel2 = GetPixel(x + xN, y + yN);
-                            if (pixel1.State == Metadata.PixelState.Inclusion || pixel2.State == Metadata.PixelState.Inclusion || pixel1.State == pixel2.State)
+                            if (includeInclusions)
                             {
-                                continue;
+                                if (pixel1.State == pixel2.State)
+                                {
+                                    continue;
+                                }
+                            }
+                            else
+                            {
+                                if (pixel1.State == Metadata.PixelState.Inclusion || pixel2.State == Metadata.PixelState.Inclusion || pixel1.State == pixel2.State)
+                                {
+                                    continue;
+                                }
                             }
 
                             _borderPixels.Add(new GrainModel()

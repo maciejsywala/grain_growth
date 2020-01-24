@@ -70,9 +70,9 @@
             this.comboBox4 = new System.Windows.Forms.ComboBox();
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
             this.button7 = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.Seeds.SuspendLayout();
@@ -111,7 +111,7 @@
             this.groupBox3.Size = new System.Drawing.Size(261, 151);
             this.groupBox3.TabIndex = 8;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Intrusions";
+            this.groupBox3.Text = "Inclusions";
             // 
             // button5
             // 
@@ -146,9 +146,9 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(112, 24);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(139, 17);
+            this.label4.Size = new System.Drawing.Size(137, 17);
             this.label4.TabIndex = 9;
-            this.label4.Text = "amount of incrusions";
+            this.label4.Text = "amount of inclusions";
             // 
             // textBox6
             // 
@@ -488,13 +488,15 @@
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Result";
             // 
-            // textBox3
+            // button7
             // 
-            this.textBox3.Enabled = false;
-            this.textBox3.Location = new System.Drawing.Point(6, 21);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 22);
-            this.textBox3.TabIndex = 0;
+            this.button7.Location = new System.Drawing.Point(146, 20);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(75, 23);
+            this.button7.TabIndex = 2;
+            this.button7.Text = "Calculate";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.CalculatePercentage_Click);
             // 
             // label9
             // 
@@ -505,15 +507,13 @@
             this.label9.TabIndex = 1;
             this.label9.Text = "GB";
             // 
-            // button7
+            // textBox3
             // 
-            this.button7.Location = new System.Drawing.Point(146, 20);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(75, 23);
-            this.button7.TabIndex = 2;
-            this.button7.Text = "Calculate";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.CalculatePercentage_Click);
+            this.textBox3.Enabled = false;
+            this.textBox3.Location = new System.Drawing.Point(6, 21);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(100, 22);
+            this.textBox3.TabIndex = 0;
             // 
             // Form1
             // 
